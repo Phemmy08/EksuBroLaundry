@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eksu Bro Laundry - Pricing</title>
+    <link rel="stylesheet" href="pricing.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">Eksu Bro</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing" class="active">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero container">
+        <h1>Simple, Transparent Pricing</h1>
+        <p>Choose the perfect laundry plan for your needs. No hidden fees, no surprises - just clean, fresh clothes delivered to your door.</p>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Pricing Plans</h2>
+                <p>Professional laundry services designed to fit your lifestyle and budget</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Basic Plan -->
+                <div class="pricing-card">
+                    <div class="plan-name">Basic Clean</div>
+                    <div class="plan-price">₦2,500</div>
+                    <div class="plan-period">per load (up to 5kg)</div>
+                    <ul class="plan-features">
+                        <li>Wash & Fold Service</li>
+                        <li>Basic Detergent</li>
+                        <li>48-hour turnaround</li>
+                        <li>Standard packaging</li>
+                        <li>Pickup & Delivery</li>
+                    </ul>
+                    <button class="cta-button secondary">Choose Basic</button>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="pricing-card featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="plan-name">Premium Care</div>
+                    <div class="plan-price">₦4,000</div>
+                    <div class="plan-period">per load (up to 5kg)</div>
+                    <ul class="plan-features">
+                        <li>Wash, Fold & Iron</li>
+                        <li>Premium Detergent</li>
+                        <li>24-hour turnaround</li>
+                        <li>Eco-friendly packaging</li>
+                        <li>Priority pickup & delivery</li>
+                        <li>Stain treatment included</li>
+                    </ul>
+                    <button class="cta-button">Choose Premium</button>
+                </div>
+
+                <!-- Luxury Plan -->
+                <div class="pricing-card">
+                    <div class="plan-name">Luxury Suite</div>
+                    <div class="plan-price">₦6,500</div>
+                    <div class="plan-period">per load (up to 5kg)</div>
+                    <ul class="plan-features">
+                        <li>Premium wash & expert care</li>
+                        <li>Luxury fabric softener</li>
+                        <li>Same-day service</li>
+                        <li>Designer packaging</li>
+                        <li>Express pickup & delivery</li>
+                        <li>Professional garment care</li>
+                        <li>Quality guarantee</li>
+                    </ul>
+                    <button class="cta-button">Choose Luxury</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add-ons Section -->
+    <section class="addons-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Additional Services</h2>
+                <p>Enhance your laundry experience with our premium add-ons</p>
+            </div>
+
+            <div class="addons-grid">
+                <div class="addon-card">
+                    <div class="addon-icon">👔</div>
+                    <div class="addon-name">Dry Cleaning</div>
+                    <div class="addon-price">₦1,500/item</div>
+                </div>
+
+                <div class="addon-card">
+                    <div class="addon-icon">🧽</div>
+                    <div class="addon-name">Stain Removal</div>
+                    <div class="addon-price">₦500/item</div>
+                </div>
+
+                <div class="addon-card">
+                    <div class="addon-icon">👟</div>
+                    <div class="addon-name">Shoe Cleaning</div>
+                    <div class="addon-price">₦800/pair</div>
+                </div>
+
+                <div class="addon-card">
+                    <div class="addon-icon">🏠</div>
+                    <div class="addon-name">Same Day</div>
+                    <div class="addon-price">+₦1,000</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about our pricing and services</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    How is pricing calculated for loads over 5kg?
+                </div>
+                <div class="faq-answer">
+                    For loads exceeding 5kg, we charge an additional ₦400 per kg for Basic, ₦500 per kg for Premium, and ₦650 per kg for Luxury plans.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Do you offer bulk or subscription discounts?
+                </div>
+                <div class="faq-answer">
+                    Yes! Subscribe to our monthly service and save 15%. Bulk orders of 5+ loads get a 10% discount. Contact us for corporate rates.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    What's included in the pickup and delivery service?
+                </div>
+                <div class="faq-answer">
+                    Our pickup and delivery service is included in all plans within Lagos. We collect your laundry at your preferred time and return it fresh and clean to your doorstep.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    What if I'm not satisfied with the service?
+                </div>
+                <div class="faq-answer">
+                    We offer a 100% satisfaction guarantee. If you're not happy with our service, we'll re-clean your items for free or provide a full refund.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="pricing.js"></script>
+</body>
+</html>
