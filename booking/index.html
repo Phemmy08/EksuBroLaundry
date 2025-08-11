@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Now - Eksu Bro Laundry</title>
+    <meta name="description" content="Book your laundry service with Eksu Bro. Easy online booking with pickup and delivery. Professional laundry care in Lagos, Nigeria.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3a5f 100%);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(44, 90, 160, 0.15);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ffd700;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffd700;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3a5f 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .highlight {
+            color: #ffd700;
+        }
+
+        /* Booking Section */
+        .booking-section {
+            padding: 80px 0;
+            background: #f8fafc;
+        }
+
+        .booking-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(44, 90, 160, 0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #2c5aa0;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Form Styles */
+        .booking-form {
+            display: grid;
+            gap: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: #2c5aa0;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2c5aa0;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Service Selection */
+        .service-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .service-option {
+            position: relative;
+        }
+
+        .service-option input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .service-option label {
+            display: block;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .service-option input[type="checkbox"]:checked + label {
+            border-color: #2c5aa0;
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3a5f 100%);
+            color: white;
+        }
+
+        .service-price {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .service-option input[type="checkbox"]:checked + label .service-price {
+            color: #ffd700;
+        }
+
+        /* Date and Time Picker */
+        .datetime-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3a5f 100%);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(44, 90, 160, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Summary Box */
+        .booking-summary {
+            background: linear-gradient(135deg, rgba(44, 90, 160, 0.05) 0%, rgba(30, 58, 95, 0.05) 100%);
+            border: 2px solid #e8f0fe;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 25px;
+        }
+
+        .summary-title {
+            color: #2c5aa0;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding: 5px 0;
+        }
+
+        .summary-total {
+            border-top: 2px solid #2c5aa0;
+            padding-top: 10px;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #2c5aa0;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #2c5aa0;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5aa0 100%);
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffd700;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: linear-gradient(135deg, #2c5aa0 0%, #1e3a5f 100%);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 50px;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .datetime-row {
+                grid-template-columns: 1fr;
+            }
+
+            .service-selection {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-container {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .booking-container {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">Eksu Bro</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="../Services/services.html">Services</a></li>
+                <li><a href="../Pricing/index.html">Pricing</a></li>
+                <li><a href="#" class="active">Booking</a></li>
+                <li><a href="../Contactus/index.html">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Book Your <span class="highlight">Laundry</span> Service</h1>
+            <p>Schedule your pickup and delivery in just a few clicks. Professional laundry care made easy.</p>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section">
+        <div class="container">
+            <div class="booking-container">
+                <div class="section-title">
+                    <h2>Schedule Your Service</h2>
+                    <p>Fill out the form below and we'll handle the rest</p>
+                </div>
+
+                <form class="booking-form" id="bookingForm">
+                    <!-- Personal Information -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="area">Service Area *</label>
+                            <select id="area" name="area" required>
+                                <option value="">Select your area</option>
+                                <option value="Victoria Island">Victoria Island</option>
+                                <option value="Ikoyi">Ikoyi</option>
+                                <option value="Lagos Island">Lagos Island</option>
+                                <option value="Banana Island">Banana Island</option>
+                                <option value="Lekki Phase 1">Lekki Phase 1</option>
+                                <option value="Lekki Phase 2">Lekki Phase 2</option>
+                                <option value="Ajah">Ajah</option>
+                                <option value="Chevron">Chevron</option>
+                                <option value="Ikeja">Ikeja</option>
+                                <option value="Maryland">Maryland</option>
+                                <option value="Yaba">Yaba</option>
+                                <option value="Surulere">Surulere</option>
+                                <option value="Gbagada">Gbagada</option>
+                                <option value="Ketu">Ketu</option>
+                                <option value="Other">Other (Please specify in notes)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Pickup Address *</label>
+                        <textarea id="address" name="address" placeholder="Please provide your full address including landmarks" required></textarea>
+                    </div>
+
+                    <!-- Service Selection -->
+                    <div class="form-group">
+                        <label>Select Services *</label>
+                        <div class="service-selection">
+                            <div class="service-option">
+                                <input type="checkbox" id="washFold" name="services" value="Wash & Fold" data-price="2500">
+                                <label for="washFold">
+                                    <strong>Wash & Fold</strong>
+                                    <div class="service-price">₦2,500/load</div>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="checkbox" id="dryClean" name="services" value="Dry Cleaning" data-price="2500">
+                                <label for="dryClean">
+                                    <strong>Dry Cleaning</strong>
+                                    <div class="service-price">₦2,500/item</div>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="checkbox" id="ironing" name="services" value="Ironing" data-price="300">
+                                <label for="ironing">
+                                    <strong>Ironing Service</strong>
+                                    <div class="service-price">₦300/item</div>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="checkbox" id="express" name="services" value="Express Service" data-price="1000">
+                                <label for="express">
+                                    <strong>Express Service</strong>
+                                    <div class="service-price">+₦1,000</div>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="checkbox" id="household" name="services" value="Household Items" data-price="2000">
+                                <label for="household">
+                                    <strong>Household Items</strong>
+                                    <div class="service-price">₦2,000/item</div>
+                                </label>
+                            </div>
+                            <div class="service-option">
+                                <input type="checkbox" id="specialty" name="services" value="Specialty Care" data-price="0">
+                                <label for="specialty">
+                                    <strong>Specialty Care</strong>
+                                    <div class="service-price">Custom Quote</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date and Time -->
+                    <div class="datetime-row">
+                        <div class="form-group">
+                            <label for="pickupDate">Preferred Pickup Date *</label>
+                            <input type="date" id="pickupDate" name="pickupDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pickupTime">Preferred Pickup Time *</label>
+                            <select id="pickupTime" name="pickupTime" required>
+                                <option value="">Select time</option>
+                                <option value="8:00 AM - 10:00 AM">8:00 AM - 10:00 AM</option>
+                                <option value="10:00 AM - 12:00 PM">10:00 AM - 12:00 PM</option>
+                                <option value="12:00 PM - 2:00 PM">12:00 PM - 2:00 PM</option>
+                                <option value="2:00 PM - 4:00 PM">2:00 PM - 4:00 PM</option>
+                                <option value="4:00 PM - 6:00 PM">4:00 PM - 6:00 PM</option>
+                                <option value="6:00 PM - 8:00 PM">6:00 PM - 8:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="loadCount">Number of Loads/Items</label>
+                            <input type="number" id="loadCount" name="loadCount" min="1" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="deliveryDate">Preferred Delivery Date</label>
+                            <input type="date" id="deliveryDate" name="deliveryDate">
+                        </div>
+                    </div>
+
+                    <!-- Additional Notes -->
+                    <div class="form-group">
+                        <label for="notes">Special Instructions / Notes</label>
+                        <textarea id="notes" name="notes" placeholder="Any special instructions, stains to mention, or additional information..."></textarea>
+                    </div>
+
+                    <!-- Booking Summary -->
+                    <div class="booking-summary" id="bookingSummary" style="display: none;">
+                        <div class="summary-title">Booking Summary</div>
+                        <div id="summaryContent"></div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Book Your Service</button>
+                </form>
+
+                <!-- Features -->
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🚚</div>
+                        <h3>Free Pickup & Delivery</h3>
+                        <p>We come to you at your preferred time</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Fast Turnaround</h3>
+                        <p>24-48 hour service guarantee</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">✨</div>
+                        <h3>Premium Quality</h3>
+                        <p>Professional care for all your garments</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Eksu Bro</h3>
+                    <p>Premium laundry services with pickup and delivery across Lagos. Your trusted partner for clean, fresh clothes.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="Services/services.html">Services</a></li>
+                        <li><a href="Pricing/index.html">Pricing</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>Lagos, Nigeria</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <span>+234 xxx xxx xxxx</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <span>hello@eksubro.com</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Eksu Bro Laundry Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        navLinks.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('pickupDate').setAttribute('min', today);
+        document.getElementById('deliveryDate').setAttribute('min', today);
+
+        // Auto-set delivery date based on pickup date
+        document.getElementById('pickupDate').addEventListener('change', function() {
+            const pickupDate = new Date(this.value);
+            const deliveryDate = new Date(pickupDate);
+            deliveryDate.setDate(deliveryDate.getDate() + 2); // Add 2 days for delivery
+            document.getElementById('deliveryDate').value = deliveryDate.toISOString().split('T')[0];
+        });
+
+        // Update booking summary when services are selected
+        function updateBookingSummary() {
+            const checkedServices = document.querySelectorAll('input[name="services"]:checked');
+            const loadCount = parseInt(document.getElementById('loadCount').value) || 1;
+            const summary = document.getElementById('bookingSummary');
+            const summaryContent = document.getElementById('summaryContent');
+            
+            if (checkedServices.length === 0) {
+                summary.style.display = 'none';
+                return;
+            }
+
+            let total = 0;
+            let summaryHTML = '';
+
+            checkedServices.forEach(service => {
+                const price = parseInt(service.getAttribute('data-price'));
+                const serviceName = service.value;
+                let itemTotal = price * loadCount;
+                
+                if (serviceName === 'Specialty Care') {
+                    summaryHTML += `<div class="summary-item"><span>${serviceName}</span><span>Custom Quote</span></div>`;
+                } else {
+                    summaryHTML += `<div class="summary-item"><span>${serviceName}</span><span>₦${itemTotal.toLocaleString()}</span></div>`;
+                    total += itemTotal;
+                }
+            });
+
+            if (total > 0) {
+                summaryHTML += `<div class="summary-item summary-total"><span>Total</span><span>₦${total.toLocaleString()}</span></div>`;
+            }
+
+            summaryContent.innerHTML = summaryHTML;
+            summary.style.display = 'block';
+        }
+
+        // Add event listeners for service selection and load count
+        document.querySelectorAll('input[name="services"]').forEach(checkbox => {
+            checkbox.addEventListener('change', updateBookingSummary);
+        });
+
+        document.getElementById('loadCount').addEventListener('input', updateBookingSummary);
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = new FormData(this);
+            const selectedServices = Array.from(document.querySelectorAll('input[name="services"]:checked'))
+                .map(input => input.value);
+
+            if (selectedServices.length === 0) {
+                alert('Please select at least one service');
+                return;
+            }
+
+            // Create WhatsApp message
+            let message = `🧺 *NEW BOOKING REQUEST*\n\n`;
+            message += `👤 *Customer Details:*\n`;
+            message += `Name: ${formData.get('fullName')}\n`;
+            message += `Phone: ${formData.get('phone')}\n`;
+            message += `Email: ${formData.get('email') || 'Not provided'}\n`;
+            message += `Area: ${formData.get('area')}\n\n`;
+            
+            message += `📍 *Pickup Address:*\n${formData.get('address')}\n\n`;
+            
+            message += `🛍️ *Services Requested:*\n`;
+            selectedServices.forEach(service => {
+                message += `• ${service}\n`;
+            });
+            
+            message += `\n📅 *Schedule:*\n`;
+            message += `Pickup Date: ${formData.get('pickupDate')}\n`;
+            message += `Pickup Time: ${formData.get('pickupTime')}\n`;
+            message += `Delivery Date: ${formData.get('deliveryDate') || 'As per standard turnaround'}\n`;
+            message += `Number of Loads/Items: ${formData.get('loadCount')}\n\n`;
+            
+            if (formData.get('notes')) {
+                message += `📝 *Special Instructions:*\n${formData.get('notes')}\n\n`;
+            }
+            
+            message += `✨ Thank you for choosing Eksu Bro Laundry!`;
+
+            // Replace with your WhatsApp number (remove + and any spaces)
+            const whatsappNumber = '2348147356424'; // Replace with your actual number
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+
+            // Show success message
+            alert('Booking details sent to WhatsApp! We will confirm your booking shortly.');
+            
+            // Reset form
+            this.reset();
+            document.getElementById('bookingSummary').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
