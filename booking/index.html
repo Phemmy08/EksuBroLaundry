@@ -217,48 +217,85 @@
             min-height: 120px;
         }
 
-        /* Service Selection */
-        .service-selection {
+        /* Category Section Styles */
+        .category-section {
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, rgba(44, 90, 160, 0.03) 0%, rgba(30, 58, 95, 0.03) 100%);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #e8f0fe;
+        }
+
+        .category-title {
+            color: #2c5aa0;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8f0fe;
+        }
+
+        .items-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .item-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 100px;
+            align-items: center;
             gap: 15px;
-            margin-top: 10px;
-        }
-
-        .service-option {
-            position: relative;
-        }
-
-        .service-option input[type="checkbox"] {
-            position: absolute;
-            opacity: 0;
-        }
-
-        .service-option label {
-            display: block;
             padding: 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            cursor: pointer;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
+        }
+
+        .item-row:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 90, 160, 0.1);
+        }
+
+        .item-name {
+            font-weight: 500;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .item-price {
+            color: #2c5aa0;
+            font-weight: 600;
             text-align: center;
-            background: #fafafa;
-        }
-
-        .service-option input[type="checkbox"]:checked + label {
-            border-color: #2c5aa0;
-            background: linear-gradient(135deg, #2c5aa0 0%, #1e3a5f 100%);
-            color: white;
-        }
-
-        .service-price {
             font-size: 0.9rem;
-            color: #666;
-            margin-top: 5px;
         }
 
-        .service-option input[type="checkbox"]:checked + label .service-price {
-            color: #ffd700;
+        .quantity-input {
+            width: 80px;
+            padding: 8px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #2c5aa0;
+            background: #fafafa;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-input:focus {
+            outline: none;
+            border-color: #2c5aa0;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+        }
+
+        .quantity-input[value="0"] {
+            color: #999;
+        }
+
+        .quantity-input:not([value="0"]) {
+            background: linear-gradient(135deg, rgba(44, 90, 160, 0.1) 0%, rgba(30, 58, 95, 0.1) 100%);
+            border-color: #2c5aa0;
         }
 
         /* Date and Time Picker */
@@ -480,10 +517,10 @@
             <div class="logo">Eksu Bro</div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="../Services/services.html">Services</a></li>
-                <li><a href="../Pricing/index.html">Pricing</a></li>
+                <li><a href="Services/services.html">Services</a></li>
+                <li><a href="Pricing/index.html">Pricing</a></li>
                 <li><a href="#" class="active">Booking</a></li>
-                <li><a href="../Contactus/index.html">Contact</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -558,49 +595,131 @@
 
                     <!-- Service Selection -->
                     <div class="form-group">
-                        <label>Select Services *</label>
-                        <div class="service-selection">
-                            <div class="service-option">
-                                <input type="checkbox" id="washFold" name="services" value="Wash & Fold" data-price="2500">
-                                <label for="washFold">
-                                    <strong>Wash & Fold</strong>
-                                    <div class="service-price">₦2,500/load</div>
-                                </label>
+                        <label>Select Items & Quantities *</label>
+                        
+                        <!-- Clothing Section -->
+                        <div class="category-section">
+                            <h3 class="category-title">👔 Clothing</h3>
+                            <div class="items-grid">
+                                <div class="item-row">
+                                    <span class="item-name">Boxer</span>
+                                    <span class="item-price">₦200</span>
+                                    <input type="number" class="quantity-input" data-item="Boxer" data-price="200" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Singlet</span>
+                                    <span class="item-price">₦200</span>
+                                    <input type="number" class="quantity-input" data-item="Singlet" data-price="200" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Short</span>
+                                    <span class="item-price">₦350</span>
+                                    <input type="number" class="quantity-input" data-item="Short" data-price="350" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Harmless</span>
+                                    <span class="item-price">₦350</span>
+                                    <input type="number" class="quantity-input" data-item="Harmless" data-price="350" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Shirt</span>
+                                    <span class="item-price">₦400</span>
+                                    <input type="number" class="quantity-input" data-item="Shirt" data-price="400" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Vintage</span>
+                                    <span class="item-price">₦400</span>
+                                    <input type="number" class="quantity-input" data-item="Vintage" data-price="400" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Short Jean</span>
+                                    <span class="item-price">₦500</span>
+                                    <input type="number" class="quantity-input" data-item="Short Jean" data-price="500" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Top</span>
+                                    <span class="item-price">₦400-500</span>
+                                    <input type="number" class="quantity-input" data-item="Top" data-price="450" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Jean</span>
+                                    <span class="item-price">₦500</span>
+                                    <input type="number" class="quantity-input" data-item="Jean" data-price="500" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Jean Jacket</span>
+                                    <span class="item-price">₦500</span>
+                                    <input type="number" class="quantity-input" data-item="Jean Jacket" data-price="500" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Trouser</span>
+                                    <span class="item-price">₦500</span>
+                                    <input type="number" class="quantity-input" data-item="Trouser" data-price="500" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Female Garment</span>
+                                    <span class="item-price">₦1,000</span>
+                                    <input type="number" class="quantity-input" data-item="Female Garment" data-price="1000" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Male Garment</span>
+                                    <span class="item-price">₦1,200</span>
+                                    <input type="number" class="quantity-input" data-item="Male Garment" data-price="1200" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Native</span>
+                                    <span class="item-price">₦1,200</span>
+                                    <input type="number" class="quantity-input" data-item="Native" data-price="1200" min="0" value="0">
+                                </div>
                             </div>
-                            <div class="service-option">
-                                <input type="checkbox" id="dryClean" name="services" value="Dry Cleaning" data-price="2500">
-                                <label for="dryClean">
-                                    <strong>Dry Cleaning</strong>
-                                    <div class="service-price">₦2,500/item</div>
-                                </label>
+                        </div>
+
+                        <!-- Beddings Section -->
+                        <div class="category-section">
+                            <h3 class="category-title">🛏️ Beddings</h3>
+                            <div class="items-grid">
+                                <div class="item-row">
+                                    <span class="item-name">Towel</span>
+                                    <span class="item-price">₦700</span>
+                                    <input type="number" class="quantity-input" data-item="Towel" data-price="700" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Blanket</span>
+                                    <span class="item-price">₦1,000-1,200</span>
+                                    <input type="number" class="quantity-input" data-item="Blanket" data-price="1100" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Bed Spread with Pillow</span>
+                                    <span class="item-price">₦1,500</span>
+                                    <input type="number" class="quantity-input" data-item="Bed Spread with Pillow" data-price="1500" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Duvet Only</span>
+                                    <span class="item-price">₦1,700</span>
+                                    <input type="number" class="quantity-input" data-item="Duvet Only" data-price="1700" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Complete Native with Agbada</span>
+                                    <span class="item-price">₦2,000</span>
+                                    <input type="number" class="quantity-input" data-item="Complete Native with Agbada" data-price="2000" min="0" value="0">
+                                </div>
+                                <div class="item-row">
+                                    <span class="item-name">Duvet Complete</span>
+                                    <span class="item-price">₦2,500-3,000</span>
+                                    <input type="number" class="quantity-input" data-item="Duvet Complete" data-price="2750" min="0" value="0">
+                                </div>
                             </div>
-                            <div class="service-option">
-                                <input type="checkbox" id="ironing" name="services" value="Ironing" data-price="300">
-                                <label for="ironing">
-                                    <strong>Ironing Service</strong>
-                                    <div class="service-price">₦300/item</div>
-                                </label>
-                            </div>
-                            <div class="service-option">
-                                <input type="checkbox" id="express" name="services" value="Express Service" data-price="1000">
-                                <label for="express">
-                                    <strong>Express Service</strong>
-                                    <div class="service-price">+₦1,000</div>
-                                </label>
-                            </div>
-                            <div class="service-option">
-                                <input type="checkbox" id="household" name="services" value="Household Items" data-price="2000">
-                                <label for="household">
-                                    <strong>Household Items</strong>
-                                    <div class="service-price">₦2,000/item</div>
-                                </label>
-                            </div>
-                            <div class="service-option">
-                                <input type="checkbox" id="specialty" name="services" value="Specialty Care" data-price="0">
-                                <label for="specialty">
-                                    <strong>Specialty Care</strong>
-                                    <div class="service-price">Custom Quote</div>
-                                </label>
+                        </div>
+
+                        <!-- Footwear Section -->
+                        <div class="category-section">
+                            <h3 class="category-title">👟 Footwear</h3>
+                            <div class="items-grid">
+                                <div class="item-row">
+                                    <span class="item-name">Sneakers</span>
+                                    <span class="item-price">₦1,500-2,000</span>
+                                    <input type="number" class="quantity-input" data-item="Sneakers" data-price="1750" min="0" value="0">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -627,12 +746,21 @@
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="loadCount">Number of Loads/Items</label>
-                            <input type="number" id="loadCount" name="loadCount" min="1" value="1">
-                        </div>
-                        <div class="form-group">
                             <label for="deliveryDate">Preferred Delivery Date</label>
                             <input type="date" id="deliveryDate" name="deliveryDate">
+                        </div>
+                        <div class="form-group">
+                            <label>Additional Services</label>
+                            <div style="display: flex; gap: 15px; align-items: center; margin-top: 10px;">
+                                <label style="display: flex; align-items: center; gap: 8px; color: #666; font-weight: normal;">
+                                    <input type="checkbox" id="expressService" name="expressService" value="Express Service" style="width: auto;">
+                                    Express Service (+₦1,000)
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 8px; color: #666; font-weight: normal;">
+                                    <input type="checkbox" id="ironingService" name="ironingService" value="Ironing Service" style="width: auto;">
+                                    Ironing Service (+₦200/item)
+                                </label>
+                            </div>
                         </div>
                     </div>
 
@@ -700,7 +828,7 @@
                     </div>
                     <div class="contact-item">
                         <span>📞</span>
-                        <span>+234 xxx xxx xxxx</span>
+                        <span>+2348155975073</span>
                     </div>
                     <div class="contact-item">
                         <span>📧</span>
@@ -746,48 +874,63 @@
             document.getElementById('deliveryDate').value = deliveryDate.toISOString().split('T')[0];
         });
 
-        // Update booking summary when services are selected
+        // Update booking summary when quantities change
         function updateBookingSummary() {
-            const checkedServices = document.querySelectorAll('input[name="services"]:checked');
-            const loadCount = parseInt(document.getElementById('loadCount').value) || 1;
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+            const expressService = document.getElementById('expressService').checked;
+            const ironingService = document.getElementById('ironingService').checked;
             const summary = document.getElementById('bookingSummary');
             const summaryContent = document.getElementById('summaryContent');
             
-            if (checkedServices.length === 0) {
+            let total = 0;
+            let summaryHTML = '';
+            let hasItems = false;
+            let totalIroningItems = 0;
+
+            quantityInputs.forEach(input => {
+                const quantity = parseInt(input.value) || 0;
+                if (quantity > 0) {
+                    hasItems = true;
+                    const itemName = input.getAttribute('data-item');
+                    const price = parseInt(input.getAttribute('data-price'));
+                    const itemTotal = price * quantity;
+                    
+                    summaryHTML += `<div class="summary-item"><span>${itemName} (${quantity})</span><span>₦${itemTotal.toLocaleString()}</span></div>`;
+                    total += itemTotal;
+                    totalIroningItems += quantity;
+                }
+            });
+
+            // Add additional services
+            if (expressService) {
+                summaryHTML += `<div class="summary-item"><span>Express Service</span><span>₦1,000</span></div>`;
+                total += 1000;
+            }
+
+            if (ironingService && totalIroningItems > 0) {
+                const ironingTotal = totalIroningItems * 200;
+                summaryHTML += `<div class="summary-item"><span>Ironing Service (${totalIroningItems} items)</span><span>₦${ironingTotal.toLocaleString()}</span></div>`;
+                total += ironingTotal;
+            }
+
+            if (!hasItems) {
                 summary.style.display = 'none';
                 return;
             }
 
-            let total = 0;
-            let summaryHTML = '';
-
-            checkedServices.forEach(service => {
-                const price = parseInt(service.getAttribute('data-price'));
-                const serviceName = service.value;
-                let itemTotal = price * loadCount;
-                
-                if (serviceName === 'Specialty Care') {
-                    summaryHTML += `<div class="summary-item"><span>${serviceName}</span><span>Custom Quote</span></div>`;
-                } else {
-                    summaryHTML += `<div class="summary-item"><span>${serviceName}</span><span>₦${itemTotal.toLocaleString()}</span></div>`;
-                    total += itemTotal;
-                }
-            });
-
-            if (total > 0) {
-                summaryHTML += `<div class="summary-item summary-total"><span>Total</span><span>₦${total.toLocaleString()}</span></div>`;
-            }
+            summaryHTML += `<div class="summary-item summary-total"><span>Total</span><span>₦${total.toLocaleString()}</span></div>`;
 
             summaryContent.innerHTML = summaryHTML;
             summary.style.display = 'block';
         }
 
-        // Add event listeners for service selection and load count
-        document.querySelectorAll('input[name="services"]').forEach(checkbox => {
-            checkbox.addEventListener('change', updateBookingSummary);
+        // Add event listeners for quantity inputs and additional services
+        document.querySelectorAll('.quantity-input').forEach(input => {
+            input.addEventListener('input', updateBookingSummary);
         });
 
-        document.getElementById('loadCount').addEventListener('input', updateBookingSummary);
+        document.getElementById('expressService').addEventListener('change', updateBookingSummary);
+        document.getElementById('ironingService').addEventListener('change', updateBookingSummary);
 
         // Form submission
         document.getElementById('bookingForm').addEventListener('submit', function(e) {
@@ -795,11 +938,29 @@
 
             // Get form data
             const formData = new FormData(this);
-            const selectedServices = Array.from(document.querySelectorAll('input[name="services"]:checked'))
-                .map(input => input.value);
+            const quantityInputs = document.querySelectorAll('.quantity-input');
+            
+            // Check if any items are selected
+            let hasItems = false;
+            let selectedItems = [];
 
-            if (selectedServices.length === 0) {
-                alert('Please select at least one service');
+            quantityInputs.forEach(input => {
+                const quantity = parseInt(input.value) || 0;
+                if (quantity > 0) {
+                    hasItems = true;
+                    const itemName = input.getAttribute('data-item');
+                    const price = parseInt(input.getAttribute('data-price'));
+                    selectedItems.push({
+                        name: itemName,
+                        quantity: quantity,
+                        price: price,
+                        total: price * quantity
+                    });
+                }
+            });
+
+            if (!hasItems) {
+                alert('Please select at least one item with quantity');
                 return;
             }
 
@@ -813,16 +974,38 @@
             
             message += `📍 *Pickup Address:*\n${formData.get('address')}\n\n`;
             
-            message += `🛍️ *Services Requested:*\n`;
-            selectedServices.forEach(service => {
-                message += `• ${service}\n`;
+            message += `🛍️ *Items Requested:*\n`;
+            let grandTotal = 0;
+            
+            selectedItems.forEach(item => {
+                message += `• ${item.name}: ${item.quantity} pcs - ₦${item.total.toLocaleString()}\n`;
+                grandTotal += item.total;
             });
             
-            message += `\n📅 *Schedule:*\n`;
+            // Add additional services
+            const expressService = document.getElementById('expressService').checked;
+            const ironingService = document.getElementById('ironingService').checked;
+            
+            if (expressService || ironingService) {
+                message += `\n🌟 *Additional Services:*\n`;
+                if (expressService) {
+                    message += `• Express Service: ₦1,000\n`;
+                    grandTotal += 1000;
+                }
+                if (ironingService) {
+                    const totalItems = selectedItems.reduce((sum, item) => sum + item.quantity, 0);
+                    const ironingTotal = totalItems * 200;
+                    message += `• Ironing Service (${totalItems} items): ₦${ironingTotal.toLocaleString()}\n`;
+                    grandTotal += ironingTotal;
+                }
+            }
+            
+            message += `\n💰 *Total Amount: ₦${grandTotal.toLocaleString()}*\n\n`;
+            
+            message += `📅 *Schedule:*\n`;
             message += `Pickup Date: ${formData.get('pickupDate')}\n`;
             message += `Pickup Time: ${formData.get('pickupTime')}\n`;
-            message += `Delivery Date: ${formData.get('deliveryDate') || 'As per standard turnaround'}\n`;
-            message += `Number of Loads/Items: ${formData.get('loadCount')}\n\n`;
+            message += `Delivery Date: ${formData.get('deliveryDate') || 'As per standard turnaround'}\n\n`;
             
             if (formData.get('notes')) {
                 message += `📝 *Special Instructions:*\n${formData.get('notes')}\n\n`;
@@ -831,7 +1014,7 @@
             message += `✨ Thank you for choosing Eksu Bro Laundry!`;
 
             // Replace with your WhatsApp number (remove + and any spaces)
-            const whatsappNumber = '2348147356424'; // Replace with your actual number
+            const whatsappNumber = '2348155975073'; // Updated with the number from the image
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
